@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Tax Calculator Pakistan - CalcPK</title>
+
+  <meta name="description" content="Simple Pakistan Salary Tax Calculator. Estimate annual and monthly income tax based on salary.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f7fb;
+      color: #172033;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #0b1f3a;
+      padding: 18px 20px;
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: white;
+      font-size: 25px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .home {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 0 18px;
+    }
+
+    .card {
+      background: white;
+      padding: 28px;
+      border-radius: 16px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+    }
+
+    h1 {
+      text-align: center;
+      color: #0b1f3a;
+      margin-bottom: 8px;
+    }
+
+    .intro {
+      text-align: center;
+      color: #667085;
+      margin-bottom: 25px;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 7px;
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d0d5dd;
+      border-radius: 9px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #2563eb;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    .result {
+      margin-top: 25px;
+      padding: 20px;
+      background: #eef4ff;
+      border-radius: 12px;
+      display: none;
+    }
+
+    .result h2 {
+      color: #0b1f3a;
+      margin-bottom: 15px;
+    }
+
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 9px 0;
+      border-bottom: 1px solid #dbe3f0;
+    }
+
+    .result-row:last-child {
+      border-bottom: none;
+    }
+
+    .highlight {
+      font-size: 20px;
+      font-weight: bold;
+      color: #2563eb;
+    }
+
+    .note {
+      margin-top: 25px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 14px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+
+    .note h2 {
+      color: #0b1f3a;
+      margin-bottom: 10px;
+      font-size: 19px;
+    }
+
+    .note p {
+      color: #667085;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #667085;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="logo">CalcPK</a>
+    <a href="index.html" class="home">Home</a>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="card">
+
+    <h1>Tax Calculator Pakistan</h1>
+
+    <p class="intro">
+      Estimate your annual and monthly income tax based on your salary.
+    </p>
+
+    <div class="field">
+      <label>Monthly Gross Salary (PKR)</label>
+      <input
+        type="number"
+        id="salary"
+        placeholder="e.g. 100000"
+        min="0"
+      >
+    </div>
+
+    <div class="field">
+      <label>Annual Other Taxable Income (PKR)</label>
+      <input
+        type="number"
+        id="otherIncome"
+        placeholder="e.g. 0"
+        min="0"
+      >
+    </div>
+
+    <button onclick="calculateTax()">
+      Calculate Tax
+    </button>
+
+    <div class="result" id="result">
+
+      <h2>Estimated Tax Result</h2>
+
+      <div class="result-row">
+        <span>Annual Salary</span>
+        <strong id="annualSalary">PKR 0</strong>
+      </div>
+
+      <div class="result-row">
+        <span>Annual Other Income</span>
+        <strong id="annualOtherIncome">PKR 0</strong>
+      </div>
+
+      <div class="result-row">
+        <span>Total Annual Income</span>
+        <strong id="totalIncome">PKR 0</strong>
+      </div>
+
+      <div class="result-row">
+        <span>Estimated Annual Tax</span>
+        <strong class="highlight" id="annualTax">PKR 0</strong>
+      </div>
+
+      <div class="result-row">
+        <span>Estimated Monthly Tax</span>
+        <strong id="monthlyTax">PKR 0</strong>
+      </div>
+
+      <div class="result-row">
+        <span>Estimated Monthly Income After Tax</span>
+        <strong id="monthlyAfterTax">PKR 0</strong>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="note">
+
+    <h2>Important Note</h2>
+
+    <p>
+      This calculator provides an estimate for general informational use.
+      Actual Pakistan income tax can depend on the applicable tax year,
+      salary structure, allowances, deductions, exemptions and other
+      individual circumstances. Always verify the current rules with
+      official FBR guidance or a qualified tax professional.
+    </p>
+
+  </div>
+
+</div>
+
+<footer>
+  © 2026 CalcPK — Simple Tools. Smart Calculations.
+</footer>
+
+<script>
+
+function calculateTax() {
+
+  const monthlySalary =
+    Number(document.getElementById("salary").value) || 0;
+
+  const otherIncome =
+    Number(document.getElementById("otherIncome").value) || 0;
+
+  const annualSalary = monthlySalary * 12;
+
+  const totalIncome = annualSalary + otherIncome;
+
+  let tax = 0;
+
+  /*
+    Example progressive estimate.
+    Verify/update these slabs before presenting
+    this calculator as an official current Pakistan
+    tax calculator.
+  */
+
+  if (totalIncome <= 600000) {
+
+    tax = 0;
+
+  } else if (totalIncome <= 1200000) {
+
+    tax = (totalIncome - 600000) * 0.05;
+
+  } else if (totalIncome <= 2200000) {
+
+    tax = 30000 + (totalIncome - 1200000) * 0.15;
+
+  } else if (totalIncome <= 3200000) {
+
+    tax = 180000 + (totalIncome - 2200000) * 0.25;
+
+  } else if (totalIncome <= 4100000) {
+
+    tax = 430000 + (totalIncome - 3200000) * 0.30;
+
+  } else {
+
+    tax = 700000 + (totalIncome - 4100000) * 0.35;
+
+  }
+
+  const monthlyTax = tax / 12;
+
+  const monthlyAfterTax = monthlySalary - monthlyTax;
+
+  document.getElementById("annualSalary").textContent =
+    "PKR " + annualSalary.toLocaleString();
+
+  document.getElementById("annualOtherIncome").textContent =
+    "PKR " + otherIncome.toLocaleString();
+
+  document.getElementById("totalIncome").textContent =
+    "PKR " + totalIncome.toLocaleString();
+
+  document.getElementById("annualTax").textContent =
+    "PKR " + Math.round(tax).toLocaleString();
+
+  document.getElementById("monthlyTax").textContent =
+    "PKR " + Math.round(monthlyTax).toLocaleString();
+
+  document.getElementById("monthlyAfterTax").textContent =
+    "PKR " + Math.round(monthlyAfterTax).toLocaleString();
+
+  document.getElementById("result").style.display = "block";
+}
+
+</script>
+
+</body>
+</html>

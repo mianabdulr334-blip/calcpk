@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Salary Calculator Pakistan - CalcPK</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        header {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 16px 20px;
+        }
+
+        .nav {
+            max-width: 900px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #155eef;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .home {
+            text-decoration: none;
+            color: #374151;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .box {
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            text-align: center;
+            color: #667085;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #d0d5dd;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #155eef;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #104bc4;
+        }
+
+        #result {
+            display: none;
+            margin-top: 25px;
+            padding: 22px;
+            background: #f0f6ff;
+            border-radius: 12px;
+        }
+
+        #result h2 {
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #dbe5f5;
+        }
+
+        .result-row:last-child {
+            border-bottom: none;
+        }
+
+        .net {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 12px;
+        }
+
+        .note {
+            margin-top: 25px;
+            color: #667085;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 30px auto;
+            }
+
+            .box {
+                padding: 25px 18px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="nav">
+        <div class="logo">CalcPK</div>
+        <a href="index.html" class="home">← Home</a>
+    </div>
+</header>
+
+<div class="container">
+
+    <div class="box">
+
+        <h1>Salary Calculator Pakistan</h1>
+
+        <p class="description">
+            Calculate your monthly and yearly salary after deductions.
+        </p>
+
+        <label for="salary">Monthly Gross Salary (PKR)</label>
+
+        <input
+            type="number"
+            id="salary"
+            placeholder="Example: 50000"
+            min="0"
+        >
+
+        <label for="deduction">Other Monthly Deductions (PKR)</label>
+
+        <input
+            type="number"
+            id="deduction"
+            placeholder="Example: 2000"
+            min="0"
+        >
+
+        <button onclick="calculateSalary()">
+            Calculate Salary
+        </button>
+
+        <div id="result">
+
+            <h2>Salary Summary</h2>
+
+            <div class="result-row">
+                <span>Gross Monthly Salary</span>
+                <strong id="gross"></strong>
+            </div>
+
+            <div class="result-row">
+                <span>Other Deductions</span>
+                <strong id="deductions"></strong>
+            </div>
+
+            <div class="result-row net">
+                <span>Net Monthly Salary</span>
+                <strong id="net"></strong>
+            </div>
+
+            <div class="result-row">
+                <span>Estimated Yearly Net Salary</span>
+                <strong id="yearly"></strong>
+            </div>
+
+        </div>
+
+        <p class="note">
+            Note: This simple calculator uses the salary and deductions
+            entered by you. Actual Pakistan income tax and other deductions
+            can vary according to the applicable tax year and individual
+            circumstances.
+        </p>
+
+    </div>
+
+</div>
+
+<script>
+
+function formatPKR(number) {
+    return "PKR " + number.toLocaleString("en-PK");
+}
+
+function calculateSalary() {
+
+    const salary = Number(document.getElementById("salary").value);
+    const deduction = Number(document.getElementById("deduction").value) || 0;
+
+    if (salary <= 0) {
+        alert("Please enter your monthly salary.");
+        return;
+    }
+
+    if (deduction < 0) {
+        alert("Deduction cannot be negative.");
+        return;
+    }
+
+    if (deduction > salary) {
+        alert("Deductions cannot be greater than salary.");
+        return;
+    }
+
+    const netSalary = salary - deduction;
+    const yearlySalary = netSalary * 12;
+
+    document.getElementById("gross").textContent = formatPKR(salary);
+    document.getElementById("deductions").textContent = formatPKR(deduction);
+    document.getElementById("net").textContent = formatPKR(netSalary);
+    document.getElementById("yearly").textContent = formatPKR(yearlySalary);
+
+    document.getElementById("result").style.display = "block";
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Zakat Calculator Pakistan - CalcPK</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        header {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 16px 20px;
+        }
+
+        .nav {
+            max-width: 900px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #155eef;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .home {
+            text-decoration: none;
+            color: #374151;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        .box {
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            text-align: center;
+            color: #667085;
+            margin-bottom: 30px;
+        }
+
+        .field {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d0d5dd;
+            border-radius: 9px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 8px;
+            background: #155eef;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #104bc4;
+        }
+
+        .result {
+            display: none;
+            margin-top: 25px;
+            padding: 22px;
+            background: #f0f6ff;
+            border-radius: 12px;
+        }
+
+        .result h2 {
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 11px 0;
+            border-bottom: 1px solid #dbe5f5;
+        }
+
+        .result-row:last-child {
+            border-bottom: none;
+        }
+
+        .zakat {
+            font-size: 21px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .note {
+            margin-top: 25px;
+            color: #667085;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 25px auto;
+            }
+
+            .box {
+                padding: 25px 18px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .result-row {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="nav">
+        <div class="logo">CalcPK</div>
+        <a href="index.html" class="home">← Home</a>
+    </div>
+</header>
+
+<div class="container">
+
+    <div class="box">
+
+        <h1>Zakat Calculator Pakistan</h1>
+
+        <p class="description">
+            Calculate 2.5% Zakat on your eligible wealth.
+        </p>
+
+        <div class="field">
+            <label>Cash in Hand (PKR)</label>
+            <input type="number" id="cash" placeholder="Example: 100000" min="0">
+        </div>
+
+        <div class="field">
+            <label>Bank Balance (PKR)</label>
+            <input type="number" id="bank" placeholder="Example: 200000" min="0">
+        </div>
+
+        <div class="field">
+            <label>Gold & Silver Value (PKR)</label>
+            <input type="number" id="gold" placeholder="Example: 150000" min="0">
+        </div>
+
+        <div class="field">
+            <label>Business Assets (PKR)</label>
+            <input type="number" id="business" placeholder="Example: 100000" min="0">
+        </div>
+
+        <div class="field">
+            <label>Other Zakatable Assets (PKR)</label>
+            <input type="number" id="other" placeholder="Example: 50000" min="0">
+        </div>
+
+        <div class="field">
+            <label>Eligible Short-Term Liabilities (PKR)</label>
+            <input type="number" id="liabilities" placeholder="Example: 20000" min="0">
+        </div>
+
+        <button onclick="calculateZakat()">
+            Calculate Zakat
+        </button>
+
+        <div class="result" id="result">
+
+            <h2>Zakat Summary</h2>
+
+            <div class="result-row">
+                <span>Total Assets</span>
+                <strong id="assets"></strong>
+            </div>
+
+            <div class="result-row">
+                <span>Less Liabilities</span>
+                <strong id="less"></strong>
+            </div>
+
+            <div class="result-row">
+                <span>Net Zakatable Wealth</span>
+                <strong id="wealth"></strong>
+            </div>
+
+            <div class="result-row zakat">
+                <span>Estimated Zakat (2.5%)</span>
+                <strong id="zakat"></strong>
+            </div>
+
+        </div>
+
+        <p class="note">
+            Note: This calculator uses a 2.5% rate for an estimated calculation.
+            Zakat eligibility depends on factors such as Nisab, ownership period,
+            and the type of assets. Please consult a qualified scholar for
+            personal religious guidance.
+        </p>
+
+    </div>
+
+</div>
+
+<script>
+
+function formatPKR(number) {
+    return "PKR " + number.toLocaleString("en-PK");
+}
+
+function getValue(id) {
+    return Number(document.getElementById(id).value) || 0;
+}
+
+function calculateZakat() {
+
+    const cash = getValue("cash");
+    const bank = getValue("bank");
+    const gold = getValue("gold");
+    const business = getValue("business");
+    const other = getValue("other");
+    const liabilities = getValue("liabilities");
+
+    const totalAssets =
+        cash + bank + gold + business + other;
+
+    if (liabilities > totalAssets) {
+        alert("Liabilities cannot be greater than total assets.");
+        return;
+    }
+
+    const netWealth = totalAssets - liabilities;
+
+    const zakat = netWealth * 0.025;
+
+    document.getElementById("assets").textContent =
+        formatPKR(totalAssets);
+
+    document.getElementById("less").textContent =
+        formatPKR(liabilities);
+
+    document.getElementById("wealth").textContent =
+        formatPKR(netWealth);
+
+    document.getElementById("zakat").textContent =
+        formatPKR(zakat);
+
+    document.getElementById("result").style.display = "block";
+}
+
+</script>
+
+</body>
+</html>

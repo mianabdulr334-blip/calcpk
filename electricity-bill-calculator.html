@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Electricity Bill Calculator Pakistan - CalcPK</title>
+
+  <meta name="description" content="Calculate estimated electricity bill in Pakistan based on electricity units consumed.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f7fb;
+      color: #172033;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #0b1f3a;
+      padding: 18px 20px;
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: white;
+      font-size: 25px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .home {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 0 18px;
+    }
+
+    .card {
+      background: white;
+      padding: 28px;
+      border-radius: 16px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+    }
+
+    h1 {
+      text-align: center;
+      color: #0b1f3a;
+      margin-bottom: 8px;
+    }
+
+    .intro {
+      text-align: center;
+      color: #667085;
+      margin-bottom: 25px;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 7px;
+      font-size: 14px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d0d5dd;
+      border-radius: 9px;
+      font-size: 16px;
+      outline: none;
+      background: white;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #2563eb;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    .result {
+      margin-top: 25px;
+      padding: 20px;
+      background: #eef4ff;
+      border-radius: 12px;
+      display: none;
+    }
+
+    .result h2 {
+      color: #0b1f3a;
+      margin-bottom: 15px;
+    }
+
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 9px 0;
+      border-bottom: 1px solid #dbe3f0;
+    }
+
+    .result-row:last-child {
+      border-bottom: none;
+    }
+
+    .total {
+      font-size: 21px;
+      font-weight: bold;
+      color: #2563eb;
+    }
+
+    .note {
+      margin-top: 25px;
+      background: white;
+      padding: 20px;
+      border-radius: 14px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+
+    .note h2 {
+      color: #0b1f3a;
+      margin-bottom: 10px;
+      font-size: 19px;
+    }
+
+    .note p {
+      color: #667085;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #667085;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 20px;
+      }
+
+      .result-row {
+        flex-direction: column;
+        gap: 2px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="logo">CalcPK</a>
+    <a href="index.html" class="home">Home</a>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="card">
+
+    <h1>Electricity Bill Calculator Pakistan</h1>
+
+    <p class="intro">
+      Estimate your electricity bill based on monthly units consumed.
+    </p>
+
+    <div class="field">
+      <label>Electricity Units Consumed (kWh)</label>
+
+      <input
+        type="number"
+        id="units"
+        min="0"
+        placeholder="e.g. 200"
+      >
+    </div>
+
+    <div class="field">
+
+      <label>Consumer Type</label>
+
+      <select id="consumerType">
+
+        <option value="residential">
+          Residential
+        </option>
+
+        <option value="commercial">
+          Commercial
+        </option>
+
+      </select>
+
+    </div>
+
+    <button onclick="calculateBill()">
+      Calculate Estimated Bill
+    </button>
+
+    <div class="result" id="result">
+
+      <h2>Estimated Bill</h2>
+
+      <div class="result-row">
+        <span>Units Consumed</span>
+        <strong id="displayUnits">0</strong>
+      </div>
+
+      <div class="result-row">
+        <span>Estimated Energy Charges</span>
+        <strong id="energyCharges">PKR 0</strong>
+      </div>
+
+      <div class="result-row">
+        <span>Estimated Fixed Charges</span>
+        <strong id="fixedCharges">PKR 0</strong>
+      </div>
+
+      <div class="result-row">
+        <span>Estimated Taxes / Adjustments</span>
+        <strong id="taxes">PKR 0</strong>
+      </div>
+
+      <div class="result-row">
+        <span>Estimated Total Bill</span>
+        <strong class="total" id="totalBill">
+          PKR 0
+        </strong>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="note">
+
+    <h2>Important Note</h2>
+
+    <p>
+      This calculator provides an estimated electricity bill only.
+      Actual electricity bills can vary by DISCO, tariff category,
+      protected/non-protected status, taxes, surcharges, adjustments,
+      fixed charges and applicable government rules.
+    </p>
+
+    <p>
+      <strong>Tariff version:</strong>
+      Demo structure — update with verified current tariff data before
+      publishing as an official bill calculator.
+    </p>
+
+  </div>
+
+</div>
+
+<footer>
+  © 2026 CalcPK — Simple Tools. Smart Calculations.
+</footer>
+
+<script>
+
+/*
+  CalcPK Electricity Calculator
+
+  IMPORTANT:
+  These are demonstration rates for the calculator structure.
+  Before making this a live/current Pakistan bill calculator,
+  replace them with verified current tariff data.
+*/
+
+const TARIFF = {
+
+  residential: {
+    fixedCharge: 150,
+
+    slabs: [
+      { max: 50, rate: 7.74 },
+      { max: 100, rate: 10.06 },
+      { max: 200, rate: 13.01 },
+      { max: 300, rate: 19.12 },
+      { max: 400, rate: 26.00 },
+      { max: 500, rate: 27.00 },
+      { max: 700, rate: 32.00 },
+      { max: Infinity, rate: 35.00 }
+    ]
+  },
+
+  commercial: {
+    fixedCharge: 500,
+
+    slabs: [
+      { max: Infinity, rate: 30.00 }
+    ]
+  }
+
+};
+
+
+function calculateEnergyCharges(units, slabs) {
+
+  let remainingUnits = units;
+  let previousLimit = 0;
+  let total = 0;
+
+  for (const slab of slabs) {
+
+    if (remainingUnits <= 0) {
+      break;
+    }
+
+    const slabUnits =
+      Math.min(remainingUnits, slab.max - previousLimit);
+
+    total += slabUnits * slab.rate;
+
+    remainingUnits -= slabUnits;
+
+    previousLimit = slab.max;
+  }
+
+  return total;
+}
+
+
+function calculateBill() {
+
+  const units =
+    Number(document.getElementById("units").value) || 0;
+
+  const consumerType =
+    document.getElementById("consumerType").value;
+
+  if (units < 0) {
+    alert("Please enter valid units.");
+    return;
+  }
+
+  const tariff = TARIFF[consumerType];
+
+  const energyCharges =
+    calculateEnergyCharges(units, tariff.slabs);
+
+  const fixedCharges =
+    tariff.fixedCharge;
+
+  /*
+    Demonstration estimate for taxes/adjustments.
+    Replace with verified current applicable charges
+    when the live tariff system is implemented.
+  */
+
+  const taxes =
+    (energyCharges + fixedCharges) * 0.17;
+
+  const totalBill =
+    energyCharges + fixedCharges + taxes;
+
+
+  document.getElementById("displayUnits").textContent =
+    units + " units";
+
+  document.getElementById("energyCharges").textContent =
+    "PKR " + Math.round(energyCharges).toLocaleString();
+
+  document.getElementById("fixedCharges").textContent =
+    "PKR " + Math.round(fixedCharges).toLocaleString();
+
+  document.getElementById("taxes").textContent =
+    "PKR " + Math.round(taxes).toLocaleString();
+
+  document.getElementById("totalBill").textContent =
+    "PKR " + Math.round(totalBill).toLocaleString();
+
+  document.getElementById("result").style.display =
+    "block";
+}
+
+</script>
+
+</body>
+</html>

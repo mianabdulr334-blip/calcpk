@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CGPA to Percentage Calculator - CalcPK</title>
+
+  <meta name="description" content="Convert CGPA to percentage easily with CalcPK CGPA to Percentage Calculator.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f7fb;
+      color: #172033;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #0b1f3a;
+      padding: 18px 20px;
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: white;
+      font-size: 25px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .home {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 0 18px;
+    }
+
+    .card {
+      background: white;
+      padding: 28px;
+      border-radius: 16px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+    }
+
+    h1 {
+      text-align: center;
+      color: #0b1f3a;
+      margin-bottom: 8px;
+    }
+
+    .intro {
+      text-align: center;
+      color: #667085;
+      margin-bottom: 25px;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 7px;
+      font-size: 14px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d0d5dd;
+      border-radius: 9px;
+      font-size: 16px;
+      outline: none;
+      background: white;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #2563eb;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    .result {
+      margin-top: 25px;
+      padding: 22px;
+      background: #eef4ff;
+      border-radius: 12px;
+      text-align: center;
+      display: none;
+    }
+
+    .result h2 {
+      color: #0b1f3a;
+      margin-bottom: 12px;
+    }
+
+    .percentage {
+      font-size: 38px;
+      font-weight: bold;
+      color: #2563eb;
+      margin-bottom: 8px;
+    }
+
+    .formula {
+      color: #667085;
+      font-size: 14px;
+    }
+
+    .info {
+      margin-top: 25px;
+      background: white;
+      padding: 22px;
+      border-radius: 14px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+
+    .info h2 {
+      color: #0b1f3a;
+      margin-bottom: 10px;
+      font-size: 19px;
+    }
+
+    .info p {
+      color: #667085;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #667085;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 20px;
+      }
+
+      .percentage {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="logo">CalcPK</a>
+    <a href="index.html" class="home">Home</a>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="card">
+
+    <h1>CGPA to Percentage Calculator</h1>
+
+    <p class="intro">
+      Convert your CGPA into an estimated percentage.
+    </p>
+
+    <div class="field">
+
+      <label>Your CGPA</label>
+
+      <input
+        type="number"
+        id="cgpa"
+        min="0"
+        max="10"
+        step="0.01"
+        placeholder="e.g. 3.5"
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>Maximum CGPA</label>
+
+      <select id="maxCgpa">
+
+        <option value="4">4.0</option>
+        <option value="5">5.0</option>
+        <option value="10">10.0</option>
+
+      </select>
+
+    </div>
+
+    <button onclick="calculateCGPA()">
+      Convert to Percentage
+    </button>
+
+    <div class="result" id="result">
+
+      <h2>Estimated Percentage</h2>
+
+      <div class="percentage" id="percentage">
+        0%
+      </div>
+
+      <p class="formula" id="formula">
+        CGPA conversion
+      </p>
+
+    </div>
+
+  </div>
+
+  <div class="info">
+
+    <h2>How is CGPA converted to Percentage?</h2>
+
+    <p>
+      A simple general conversion is:
+    </p>
+
+    <p>
+      <strong>Percentage = (CGPA ÷ Maximum CGPA) × 100</strong>
+    </p>
+
+    <p>
+      Example: 3.2 CGPA out of 4.0 = 80%.
+    </p>
+
+    <p>
+      Note: Universities and boards may use different official
+      conversion formulas. Always check your institution's rules
+      when an official percentage is required.
+    </p>
+
+  </div>
+
+</div>
+
+<footer>
+  © 2026 CalcPK — Simple Tools. Smart Calculations.
+</footer>
+
+<script>
+
+function calculateCGPA() {
+
+  const cgpa =
+    Number(document.getElementById("cgpa").value);
+
+  const maxCgpa =
+    Number(document.getElementById("maxCgpa").value);
+
+  if (cgpa < 0 || cgpa > maxCgpa) {
+
+    alert("Please enter a valid CGPA.");
+
+    return;
+  }
+
+  const percentage =
+    (cgpa / maxCgpa) * 100;
+
+  document.getElementById("percentage").textContent =
+    percentage.toFixed(2) + "%";
+
+  document.getElementById("formula").textContent =
+    cgpa + " ÷ " + maxCgpa + " × 100 = " +
+    percentage.toFixed(2) + "%";
+
+  document.getElementById("result").style.display =
+    "block";
+}
+
+</script>
+
+</body>
+</html>

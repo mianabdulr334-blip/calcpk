@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time Calculator - CalcPK</title>
+  <meta name="description" content="Free Time Calculator to add, subtract and calculate time duration easily.">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f7fb;
+      color: #172033;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #0b1f3a;
+      padding: 18px 20px;
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: white;
+      font-size: 25px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .home {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 0 18px;
+    }
+
+    .card {
+      background: white;
+      padding: 28px;
+      border-radius: 16px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+    }
+
+    h1 {
+      text-align: center;
+      color: #0b1f3a;
+      margin-bottom: 8px;
+    }
+
+    .intro {
+      text-align: center;
+      color: #667085;
+      margin-bottom: 25px;
+    }
+
+    .section {
+      margin-bottom: 25px;
+    }
+
+    .section h2 {
+      font-size: 19px;
+      margin-bottom: 15px;
+      color: #0b1f3a;
+    }
+
+    .time-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d0d5dd;
+      border-radius: 9px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #2563eb;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    .result {
+      margin-top: 22px;
+      padding: 20px;
+      background: #eef4ff;
+      border-radius: 12px;
+      text-align: center;
+      display: none;
+    }
+
+    .result h3 {
+      color: #0b1f3a;
+      margin-bottom: 8px;
+    }
+
+    .big-result {
+      font-size: 27px;
+      font-weight: bold;
+      color: #2563eb;
+    }
+
+    .info {
+      margin-top: 25px;
+      background: #fff;
+      padding: 22px;
+      border-radius: 14px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+
+    .info h2 {
+      margin-bottom: 10px;
+      color: #0b1f3a;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #667085;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 20px;
+      }
+
+      .time-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="logo">CalcPK</a>
+    <a href="index.html" class="home">Home</a>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="card">
+
+    <h1>Time Calculator</h1>
+
+    <p class="intro">
+      Calculate the difference between two times easily.
+    </p>
+
+    <div class="section">
+
+      <h2>Start Time</h2>
+
+      <div class="time-row">
+
+        <div>
+          <label>Hours</label>
+          <input type="number" id="startHours" min="0" max="23" placeholder="0">
+        </div>
+
+        <div>
+          <label>Minutes</label>
+          <input type="number" id="startMinutes" min="0" max="59" placeholder="0">
+        </div>
+
+        <div>
+          <label>Seconds</label>
+          <input type="number" id="startSeconds" min="0" max="59" placeholder="0">
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="section">
+
+      <h2>End Time</h2>
+
+      <div class="time-row">
+
+        <div>
+          <label>Hours</label>
+          <input type="number" id="endHours" min="0" max="23" placeholder="0">
+        </div>
+
+        <div>
+          <label>Minutes</label>
+          <input type="number" id="endMinutes" min="0" max="59" placeholder="0">
+        </div>
+
+        <div>
+          <label>Seconds</label>
+          <input type="number" id="endSeconds" min="0" max="59" placeholder="0">
+        </div>
+
+      </div>
+
+    </div>
+
+    <button onclick="calculateTime()">Calculate Time Difference</button>
+
+    <div class="result" id="result">
+      <h3>Time Difference</h3>
+      <div class="big-result" id="mainResult">0 Hours 0 Minutes 0 Seconds</div>
+      <p id="totalMinutes"></p>
+      <p id="totalSeconds"></p>
+    </div>
+
+  </div>
+
+  <div class="info">
+    <h2>What is a Time Calculator?</h2>
+    <p>
+      A Time Calculator helps you find the exact difference between two times.
+      It can be useful for work hours, study time, travel duration and daily planning.
+    </p>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 CalcPK — Simple Tools. Smart Calculations.
+</footer>
+
+<script>
+function calculateTime() {
+
+  let sh = parseInt(document.getElementById("startHours").value) || 0;
+  let sm = parseInt(document.getElementById("startMinutes").value) || 0;
+  let ss = parseInt(document.getElementById("startSeconds").value) || 0;
+
+  let eh = parseInt(document.getElementById("endHours").value) || 0;
+  let em = parseInt(document.getElementById("endMinutes").value) || 0;
+  let es = parseInt(document.getElementById("endSeconds").value) || 0;
+
+  let startTotal = (sh * 3600) + (sm * 60) + ss;
+  let endTotal = (eh * 3600) + (em * 60) + es;
+
+  let difference = endTotal - startTotal;
+
+  // If end time is on the next day
+  if (difference < 0) {
+    difference += 24 * 3600;
+  }
+
+  let hours = Math.floor(difference / 3600);
+  let minutes = Math.floor((difference % 3600) / 60);
+  let seconds = difference % 60;
+
+  let totalMinutes = Math.floor(difference / 60);
+
+  document.getElementById("mainResult").textContent =
+    hours + " Hours " + minutes + " Minutes " + seconds + " Seconds";
+
+  document.getElementById("totalMinutes").textContent =
+    "Total Minutes: " + totalMinutes;
+
+  document.getElementById("totalSeconds").textContent =
+    "Total Seconds: " + difference;
+
+  document.getElementById("result").style.display = "block";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CalcPK - Smart Calculators & Useful Tools</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 16px 20px;
+        }
+
+        .nav {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #155eef;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #374151;
+            margin-left: 20px;
+            font-size: 15px;
+        }
+
+        .hero {
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 20px 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            color: #667085;
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .search {
+            width: 100%;
+            max-width: 600px;
+            padding: 15px 18px;
+            border: 1px solid #d0d5dd;
+            border-radius: 12px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 25px 20px 50px;
+        }
+
+        .section h2 {
+            font-size: 28px;
+            margin-bottom: 22px;
+        }
+
+        .tools {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e6e8ec;
+            border-radius: 16px;
+            padding: 25px 20px;
+            text-decoration: none;
+            color: #172033;
+            transition: 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            font-size: 18px;
+            margin-bottom: 6px;
+        }
+
+        .card p {
+            color: #667085;
+            font-size: 14px;
+        }
+
+        .why {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 30px;
+            margin-top: 10px;
+        }
+
+        .why ul {
+            list-style: none;
+        }
+
+        .why li {
+            margin: 12px 0;
+            font-size: 16px;
+        }
+
+        footer {
+            background: #172033;
+            color: #ffffff;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 30px;
+        }
+
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 8px;
+            font-size: 14px;
+        }
+
+        footer p {
+            margin-top: 15px;
+            color: #cbd5e1;
+            font-size: 13px;
+        }
+
+        @media (max-width: 800px) {
+            .tools {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            nav a {
+                margin-left: 8px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .hero {
+                padding-top: 40px;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .tools {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="nav">
+        <div class="logo">CalcPK</div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#calculators">Calculators</a>
+            <a href="#pakistan-tools">Pakistan Tools</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <h1>Smart Calculators & Useful Tools</h1>
+
+    <p>
+        Free, fast and easy-to-use calculators for everyday calculations.
+    </p>
+
+    <input
+        type="text"
+        class="search"
+        placeholder="Search a calculator..."
+    >
+</section>
+
+
+<!-- ALL CALCULATORS -->
+
+<section class="section" id="calculators">
+
+    <h2>All Calculators</h2>
+
+    <div class="tools">
+
+        <!-- 1 -->
+        <a href="age-calculator.html" class="card">
+            <div class="icon">🎂</div>
+            <h3>Age Calculator</h3>
+            <p>Calculate your exact age from your date of birth.</p>
+        </a>
+
+        <!-- 2 -->
+        <a href="percentage-calculator.html" class="card">
+            <div class="icon">📊</div>
+            <h3>Percentage Calculator</h3>
+            <p>Calculate percentages quickly and easily.</p>
+        </a>
+
+        <!-- 3 -->
+        <a href="salary-calculator.html" class="card">
+            <div class="icon">💰</div>
+            <h3>Salary Calculator</h3>
+            <p>Calculate salary and deductions in Pakistan.</p>
+        </a>
+
+        <!-- 4 -->
+        <a href="zakat-calculator.html" class="card">
+            <div class="icon">🌙</div>
+            <h3>Zakat Calculator</h3>
+            <p>Calculate your Zakat amount easily.</p>
+        </a>
+
+        <!-- 5 -->
+        <a href="bmi-calculator.html" class="card">
+            <div class="icon">⚖️</div>
+            <h3>BMI Calculator</h3>
+            <p>Calculate BMI using your height and weight.</p>
+        </a>
+
+        <!-- 6 -->
+        <a href="discount-calculator.html" class="card">
+            <div class="icon">🏷️</div>
+            <h3>Discount Calculator</h3>
+            <p>Calculate discounts and final prices easily.</p>
+        </a>
+
+        <!-- 7 -->
+        <a href="profit-loss-calculator.html" class="card">
+            <div class="icon">📈</div>
+            <h3>Profit &amp; Loss Calculator</h3>
+            <p>Calculate profit, loss and percentages.</p>
+        </a>
+
+        <!-- 8 -->
+        <a href="unit-converter.html" class="card">
+            <div class="icon">📏</div>
+            <h3>Unit Converter</h3>
+            <p>Convert common units quickly and easily.</p>
+        </a>
+
+        <!-- 9 -->
+        <a href="date-difference-calculator.html" class="card">
+            <div class="icon">📅</div>
+            <h3>Date Difference Calculator</h3>
+            <p>Find the difference between two dates.</p>
+        </a>
+
+        <!-- 10 -->
+        <a href="time-calculator.html" class="card">
+            <div class="icon">⏰</div>
+            <h3>Time Calculator</h3>
+            <p>Add, subtract and calculate time easily.</p>
+        </a>
+
+        <!-- 11 -->
+        <a href="tax-calculator.html" class="card">
+            <div class="icon">🧾</div>
+            <h3>Tax Calculator Pakistan</h3>
+            <p>Calculate estimated tax amounts in Pakistan.</p>
+        </a>
+
+        <!-- 12 -->
+        <a href="electricity-bill-calculator.html" class="card">
+            <div class="icon">⚡</div>
+            <h3>Electricity Bill Calculator</h3>
+            <p>Estimate your electricity bill easily.</p>
+        </a>
+
+        <!-- 13 -->
+        <a href="marks-percentage-calculator.html" class="card">
+            <div class="icon">🎓</div>
+            <h3>Marks Percentage Calculator</h3>
+            <p>Calculate percentage from obtained marks.</p>
+        </a>
+
+        <!-- 14 -->
+        <a href="cgpa-percentage-calculator.html" class="card">
+            <div class="icon">📚</div>
+            <h3>CGPA to Percentage</h3>
+            <p>Convert CGPA into an estimated percentage.</p>
+        </a>
+
+        <!-- 15 -->
+        <a href="gpa-calculator.html" class="card">
+            <div class="icon">📝</div>
+            <h3>GPA Calculator</h3>
+            <p>Calculate GPA from grades and credit hours.</p>
+        </a>
+
+    </div>
+</section>
+
+
+<!-- PAKISTAN TOOLS -->
+
+<section class="section" id="pakistan-tools">
+
+    <h2>Pakistan Tools</h2>
+
+    <div class="tools">
+
+        <a href="salary-calculator.html" class="card">
+            <div class="icon">🇵🇰</div>
+            <h3>Salary Calculator Pakistan</h3>
+            <p>Estimate monthly and yearly salary.</p>
+        </a>
+
+        <a href="zakat-calculator.html" class="card">
+            <div class="icon">🌙</div>
+            <h3>Zakat Calculator Pakistan</h3>
+            <p>Estimate your Zakat amount.</p>
+        </a>
+
+        <a href="tax-calculator.html" class="card">
+            <div class="icon">🧾</div>
+            <h3>Tax Calculator Pakistan</h3>
+            <p>Estimate tax based on income.</p>
+        </a>
+
+        <a href="electricity-bill-calculator.html" class="card">
+            <div class="icon">⚡</div>
+            <h3>Electricity Bill Calculator</h3>
+            <p>Estimate electricity bill charges.</p>
+        </a>
+
+    </div>
+</section>
+
+
+<!-- ABOUT -->
+
+<section class="section" id="about">
+
+    <h2>Why Use CalcPK?</h2>
+
+    <div class="why">
+        <ul>
+            <li>✅ Free to use</li>
+            <li>✅ Mobile-friendly</li>
+            <li>✅ Fast and simple</li>
+            <li>✅ No registration required</li>
+            <li>✅ Useful Pakistan-specific tools</li>
+        </ul>
+    </div>
+
+</section>
+
+
+<footer>
+
+    <div>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="#">Disclaimer</a>
+    </div>
+
+    <p>© 2026 CalcPK. All rights reserved.</p>
+
+</footer>
+
+</body>
+</html>

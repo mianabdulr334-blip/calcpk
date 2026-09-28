@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>GPA Calculator - CalcPK</title>
+
+  <meta name="description" content="Free GPA Calculator to calculate semester GPA using course grades and credit hours.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f7fb;
+      color: #172033;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #0b1f3a;
+      padding: 18px 20px;
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: white;
+      font-size: 25px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .home {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 18px;
+    }
+
+    .card {
+      background: white;
+      padding: 28px;
+      border-radius: 16px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+    }
+
+    h1 {
+      text-align: center;
+      color: #0b1f3a;
+      margin-bottom: 8px;
+    }
+
+    .intro {
+      text-align: center;
+      color: #667085;
+      margin-bottom: 25px;
+    }
+
+    .course {
+      border: 1px solid #e0e5ec;
+      padding: 18px;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      background: #fafbfc;
+    }
+
+    .course-title {
+      font-weight: bold;
+      margin-bottom: 12px;
+      color: #0b1f3a;
+    }
+
+    .course-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d0d5dd;
+      border-radius: 9px;
+      font-size: 16px;
+      background: white;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #2563eb;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    .clear-btn {
+      background: #667085;
+    }
+
+    .clear-btn:hover {
+      background: #475467;
+    }
+
+    .result {
+      margin-top: 25px;
+      padding: 22px;
+      background: #eef4ff;
+      border-radius: 12px;
+      text-align: center;
+      display: none;
+    }
+
+    .result h2 {
+      color: #0b1f3a;
+      margin-bottom: 10px;
+    }
+
+    .gpa {
+      font-size: 42px;
+      font-weight: bold;
+      color: #2563eb;
+    }
+
+    .details {
+      margin-top: 15px;
+      color: #667085;
+    }
+
+    .info {
+      margin-top: 25px;
+      background: white;
+      padding: 22px;
+      border-radius: 14px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+
+    .info h2 {
+      color: #0b1f3a;
+      margin-bottom: 10px;
+      font-size: 19px;
+    }
+
+    .info p {
+      color: #667085;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #667085;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+
+      .card {
+        padding: 20px;
+      }
+
+      .course-row {
+        grid-template-columns: 1fr;
+      }
+
+      .buttons {
+        grid-template-columns: 1fr;
+      }
+
+      .gpa {
+        font-size: 35px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="logo">CalcPK</a>
+    <a href="index.html" class="home">Home</a>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="card">
+
+    <h1>GPA Calculator</h1>
+
+    <p class="intro">
+      Calculate your semester GPA using course grades and credit hours.
+    </p>
+
+    <!-- Course 1 -->
+    <div class="course">
+
+      <div class="course-title">
+        Course 1
+      </div>
+
+      <div class="course-row">
+
+        <div>
+          <label>Grade</label>
+
+          <select class="grade">
+            <option value="4">A</option>
+            <option value="3.7">A-</option>
+            <option value="3.3">B+</option>
+            <option value="3">B</option>
+            <option value="2.7">B-</option>
+            <option value="2.3">C+</option>
+            <option value="2">C</option>
+            <option value="1.7">C-</option>
+            <option value="1">D</option>
+            <option value="0">F</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Credit Hours</label>
+
+          <input
+            type="number"
+            class="credit"
+            min="0"
+            step="0.5"
+            value="3"
+          >
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Course 2 -->
+    <div class="course">
+
+      <div class="course-title">
+        Course 2
+      </div>
+
+      <div class="course-row">
+
+        <div>
+          <label>Grade</label>
+
+          <select class="grade">
+            <option value="4">A</option>
+            <option value="3.7">A-</option>
+            <option value="3.3">B+</option>
+            <option value="3">B</option>
+            <option value="2.7">B-</option>
+            <option value="2.3">C+</option>
+            <option value="2">C</option>
+            <option value="1.7">C-</option>
+            <option value="1">D</option>
+            <option value="0">F</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Credit Hours</label>
+
+          <input
+            type="number"
+            class="credit"
+            min="0"
+            step="0.5"
+            value="3"
+          >
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Course 3 -->
+    <div class="course">
+
+      <div class="course-title">
+        Course 3
+      </div>
+
+      <div class="course-row">
+
+        <div>
+          <label>Grade</label>
+
+          <select class="grade">
+            <option value="4">A</option>
+            <option value="3.7">A-</option>
+            <option value="3.3">B+</option>
+            <option value="3">B</option>
+            <option value="2.7">B-</option>
+            <option value="2.3">C+</option>
+            <option value="2">C</option>
+            <option value="1.7">C-</option>
+            <option value="1">D</option>
+            <option value="0">F</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Credit Hours</label>
+
+          <input
+            type="number"
+            class="credit"
+            min="0"
+            step="0.5"
+            value="3"
+          >
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Course 4 -->
+    <div class="course">
+
+      <div class="course-title">
+        Course 4
+      </div>
+
+      <div class="course-row">
+
+        <div>
+          <label>Grade</label>
+
+          <select class="grade">
+            <option value="4">A</option>
+            <option value="3.7">A-</option>
+            <option value="3.3">B+</option>
+            <option value="3">B</option>
+            <option value="2.7">B-</option>
+            <option value="2.3">C+</option>
+            <option value="2">C</option>
+            <option value="1.7">C-</option>
+            <option value="1">D</option>
+            <option value="0">F</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Credit Hours</label>
+
+          <input
+            type="number"
+            class="credit"
+            min="0"
+            step="0.5"
+            value="3"
+          >
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Course 5 -->
+    <div class="course">
+
+      <div class="course-title">
+        Course 5
+      </div>
+
+      <div class="course-row">
+
+        <div>
+          <label>Grade</label>
+
+          <select class="grade">
+            <option value="4">A</option>
+            <option value="3.7">A-</option>
+            <option value="3.3">B+</option>
+            <option value="3">B</option>
+            <option value="2.7">B-</option>
+            <option value="2.3">C+</option>
+            <option value="2">C</option>
+            <option value="1.7">C-</option>
+            <option value="1">D</option>
+            <option value="0">F</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Credit Hours</label>
+
+          <input
+            type="number"
+            class="credit"
+            min="0"
+            step="0.5"
+            value="3"
+          >
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="buttons">
+
+      <button onclick="calculateGPA()">
+        Calculate GPA
+      </button>
+
+      <button class="clear-btn" onclick="clearCalculator()">
+        Clear
+      </button>
+
+    </div>
+
+
+    <div class="result" id="result">
+
+      <h2>Your GPA</h2>
+
+      <div class="gpa" id="gpaResult">
+        0.00
+      </div>
+
+      <div class="details">
+
+        <p>
+          Total Credit Hours:
+          <strong id="totalCredits">0</strong>
+        </p>
+
+        <p>
+          Total Grade Points:
+          <strong id="totalPoints">0</strong>
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="info">
+
+    <h2>How is GPA Calculated?</h2>
+
+    <p>
+      GPA = Total Grade Points ÷ Total Credit Hours
+    </p>
+
+    <p>
+      Grade points are multiplied by the credit hours
+      of each course and then divided by the total credit hours.
+    </p>
+
+    <p>
+      Note: Grade scales can vary between universities.
+      Check your institution's official grading policy for
+      exact GPA calculations.
+    </p>
+
+  </div>
+
+</div>
+
+
+<footer>
+  © 2026 CalcPK — Simple Tools. Smart Calculations.
+</footer>
+
+
+<script>
+
+function calculateGPA() {
+
+  const grades =
+    document.querySelectorAll(".grade");
+
+  const credits =
+    document.querySelectorAll(".credit");
+
+  let totalPoints = 0;
+  let totalCredits = 0;
+
+  for (let i = 0; i < grades.length; i++) {
+
+    const grade =
+      Number(grades[i].value);
+
+    const credit =
+      Number(credits[i].value) || 0;
+
+    if (credit < 0) {
+
+      alert("Credit hours cannot be negative.");
+
+      return;
+    }
+
+    totalPoints += grade * credit;
+
+    totalCredits += credit;
+  }
+
+  if (totalCredits === 0) {
+
+    alert("Please enter at least one credit hour.");
+
+    return;
+  }
+
+  const gpa =
+    totalPoints / totalCredits;
+
+  document.getElementById("gpaResult").textContent =
+    gpa.toFixed(2);
+
+  document.getElementById("totalCredits").textContent =
+    totalCredits.toFixed(1);
+
+  document.getElementById("totalPoints").textContent =
+    totalPoints.toFixed(2);
+
+  document.getElementById("result").style.display =
+    "block";
+}
+
+
+function clearCalculator() {
+
+  const grades =
+    document.querySelectorAll(".grade");
+
+  const credits =
+    document.querySelectorAll(".credit");
+
+  grades.forEach(function(grade) {
+    grade.value = "4";
+  });
+
+  credits.forEach(function(credit) {
+    credit.value = "3";
+  });
+
+  document.getElementById("result").style.display =
+    "none";
+}
+
+</script>
+
+</body>
+</html>

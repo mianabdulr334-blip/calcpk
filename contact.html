@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Us - CalcPK</title>
+    <meta name="description" content="Contact CalcPK for questions, suggestions, feedback or reporting issues with our online calculators.">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .nav {
+            max-width: 1100px;
+            margin: auto;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #155eef;
+            font-size: 28px;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .home {
+            text-decoration: none;
+            color: #344054;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        .box {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid #e4e7ec;
+            box-shadow: 0 10px 35px rgba(16, 24, 40, 0.06);
+        }
+
+        h1 {
+            color: #101828;
+            font-size: 36px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .intro {
+            text-align: center;
+            color: #667085;
+            margin-bottom: 30px;
+        }
+
+        .contact-card {
+            background: #f8fafc;
+            border: 1px solid #eaecf0;
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .contact-card h2 {
+            color: #155eef;
+            font-size: 21px;
+            margin-bottom: 8px;
+        }
+
+        .contact-card p {
+            color: #475467;
+            margin-bottom: 8px;
+        }
+
+        .email {
+            color: #155eef;
+            font-weight: bold;
+            text-decoration: none;
+            word-break: break-word;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-weight: 700;
+            color: #344054;
+            margin-bottom: 8px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #d0d5dd;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            outline: none;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #155eef;
+            box-shadow: 0 0 0 3px rgba(21, 94, 239, 0.10);
+        }
+
+        textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #155eef;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #104bc4;
+        }
+
+        .note {
+            margin-top: 15px;
+            font-size: 13px;
+            color: #667085;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px 20px;
+            color: #667085;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 25px auto;
+                padding: 0 15px;
+            }
+
+            .box {
+                padding: 28px 20px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="nav">
+        <a href="index.html" class="logo">CalcPK</a>
+        <a href="index.html" class="home">← Home</a>
+    </div>
+</header>
+
+<div class="container">
+
+    <div class="box">
+
+        <h1>Contact Us</h1>
+
+        <p class="intro">
+            Have a question, suggestion or found an issue?
+            We'd love to hear from you.
+        </p>
+
+        <div class="contact-card">
+            <h2>📧 Email Us</h2>
+
+            <p>
+                For questions, feedback, suggestions or reporting an issue,
+                you can contact us by email:
+            </p>
+
+            <a class="email" href="mailto:contact@calcpk.com">
+                contact@calcpk.com
+            </a>
+        </div>
+
+        <h2 style="margin-bottom: 15px;">Send Us a Message</h2>
+
+        <form onsubmit="sendMessage(event)">
+
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" placeholder="Write your message..." required></textarea>
+            </div>
+
+            <button type="submit">Send Message</button>
+
+        </form>
+
+        <p class="note">
+            Note: The contact form will require a backend/email service
+            after the website is published.
+        </p>
+
+    </div>
+
+</div>
+
+<footer>
+    © 2026 CalcPK. All rights reserved.
+</footer>
+
+<script>
+function sendMessage(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+
+    const subject = encodeURIComponent("CalcPK Contact Message");
+    const body = encodeURIComponent(
+        "Name: " + name +
+        "\nEmail: " + email +
+        "\n\nMessage:\n" + message
+    );
+
+    window.location.href =
+        "mailto:contact@calcpk.com?subject=" + subject + "&body=" + body;
+}
+</script>
+
+</body>
+</html>

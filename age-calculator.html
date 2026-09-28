@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Age Calculator - CalcPK</title>
+    <meta name="description" content="Calculate your exact age in years, months and days with CalcPK's free online Age Calculator.">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav {
+            max-width: 1100px;
+            margin: auto;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #155eef;
+            font-size: 28px;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .home {
+            text-decoration: none;
+            color: #344054;
+            font-weight: 600;
+            padding: 9px 14px;
+            border-radius: 8px;
+        }
+
+        .home:hover {
+            background: #f2f4f7;
+            color: #155eef;
+        }
+
+        .container {
+            max-width: 760px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        .box {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid #e4e7ec;
+            box-shadow: 0 10px 35px rgba(16, 24, 40, 0.07);
+        }
+
+        .icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 18px;
+            background: #eef4ff;
+            color: #155eef;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 8px;
+            color: #101828;
+        }
+
+        .description {
+            text-align: center;
+            color: #667085;
+            margin-bottom: 32px;
+            font-size: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 9px;
+            color: #344054;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid #d0d5dd;
+            border-radius: 10px;
+            font-size: 16px;
+            background: #ffffff;
+            color: #101828;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #155eef;
+            box-shadow: 0 0 0 3px rgba(21, 94, 239, 0.10);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #155eef;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #104bc4;
+            transform: translateY(-1px);
+        }
+
+        #result {
+            display: none;
+            margin-top: 25px;
+            padding: 24px;
+            background: #eef4ff;
+            border: 1px solid #d6e4ff;
+            border-radius: 14px;
+            text-align: center;
+        }
+
+        #result h2 {
+            color: #155eef;
+            margin-bottom: 8px;
+            font-size: 22px;
+        }
+
+        #result strong {
+            display: block;
+            font-size: 21px;
+            color: #101828;
+        }
+
+        .error {
+            color: #d92d20;
+            margin-top: 15px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .info {
+            margin-top: 28px;
+            padding: 18px;
+            background: #f8fafc;
+            border: 1px solid #eaecf0;
+            border-radius: 12px;
+        }
+
+        .info h3 {
+            font-size: 17px;
+            margin-bottom: 8px;
+            color: #101828;
+        }
+
+        .info p {
+            color: #667085;
+            font-size: 14px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px 20px;
+            color: #667085;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+
+            .nav {
+                padding: 14px 16px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .container {
+                margin: 25px auto;
+                padding: 0 15px;
+            }
+
+            .box {
+                padding: 28px 20px;
+                border-radius: 16px;
+            }
+
+            h1 {
+                font-size: 29px;
+            }
+
+            .description {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="nav">
+        <a href="index.html" class="logo">CalcPK</a>
+        <a href="index.html" class="home">← Home</a>
+    </div>
+</header>
+
+<div class="container">
+
+    <div class="box">
+
+        <div class="icon">🎂</div>
+
+        <h1>Age Calculator</h1>
+
+        <p class="description">
+            Calculate your exact age in years, months and days.
+        </p>
+
+        <div class="form-group">
+            <label for="dob">Enter your date of birth</label>
+            <input type="date" id="dob">
+        </div>
+
+        <button onclick="calculateAge()">
+            Calculate Age
+        </button>
+
+        <div id="result"></div>
+
+        <div id="error" class="error"></div>
+
+        <div class="info">
+            <h3>About Age Calculator</h3>
+            <p>
+                Enter your date of birth to calculate your current age.
+                CalcPK provides a simple and fast way to calculate age online.
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    © 2026 CalcPK. All rights reserved.
+</footer>
+
+<script>
+
+function calculateAge() {
+
+    const dobInput = document.getElementById("dob").value;
+    const result = document.getElementById("result");
+    const error = document.getElementById("error");
+
+    result.style.display = "none";
+    error.innerHTML = "";
+
+    if (!dobInput) {
+        error.innerHTML = "Please enter your date of birth.";
+        return;
+    }
+
+    const dob = new Date(dobInput);
+    const today = new Date();
+
+    if (dob > today) {
+        error.innerHTML = "Date of birth cannot be in the future.";
+        return;
+    }
+
+    let years = today.getFullYear() - dob.getFullYear();
+    let months = today.getMonth() - dob.getMonth();
+    let days = today.getDate() - dob.getDate();
+
+    if (days < 0) {
+        months--;
+
+        const previousMonth = new Date(
+            today.getFullYear(),
+            today.getMonth(),
+            0
+        );
+
+        days += previousMonth.getDate();
+    }
+
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+
+    result.innerHTML = `
+        <h2>Your Age</h2>
+        <strong>${years} Years, ${months} Months, ${days} Days</strong>
+    `;
+
+    result.style.display = "block";
+}
+
+</script>
+
+</body>
+</html>

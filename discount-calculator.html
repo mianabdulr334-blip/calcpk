@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Discount Calculator - CalcPK</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 16px 20px;
+        }
+
+        .nav {
+            max-width: 900px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #155eef;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #374151;
+            margin-left: 20px;
+            font-size: 15px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .calculator {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 30px;
+            border: 1px solid #e6e8ec;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .intro {
+            text-align: center;
+            color: #667085;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #d0d5dd;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #155eef;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #155eef;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .result {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            background: #f0f6ff;
+            border-radius: 12px;
+        }
+
+        .result h2 {
+            margin-bottom: 12px;
+            font-size: 22px;
+        }
+
+        .result p {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+
+        .note {
+            margin-top: 25px;
+            padding: 18px;
+            background: #f8fafc;
+            border-radius: 12px;
+            color: #667085;
+            font-size: 14px;
+        }
+
+        footer {
+            background: #172033;
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 50px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 8px;
+            font-size: 14px;
+        }
+
+        footer p {
+            margin-top: 12px;
+            color: #cbd5e1;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            .nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav a {
+                margin-left: 8px;
+                font-size: 13px;
+            }
+
+            .container {
+                margin-top: 30px;
+            }
+
+            .calculator {
+                padding: 22px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="nav">
+        <div class="logo">CalcPK</div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#calculators">Calculators</a>
+        </nav>
+    </div>
+</header>
+
+
+<div class="container">
+
+    <div class="calculator">
+
+        <h1>🏷️ Discount Calculator</h1>
+
+        <p class="intro">
+            Calculate your discount amount and final price quickly.
+        </p>
+
+        <label for="price">Original Price</label>
+        <input
+            type="number"
+            id="price"
+            placeholder="Enter original price"
+            min="0"
+        >
+
+        <label for="discount">Discount Percentage (%)</label>
+        <input
+            type="number"
+            id="discount"
+            placeholder="Enter discount percentage"
+            min="0"
+            max="100"
+        >
+
+        <button onclick="calculateDiscount()">
+            Calculate Discount
+        </button>
+
+
+        <div class="result" id="result">
+
+            <h2>Result</h2>
+
+            <p>
+                <strong>Original Price:</strong>
+                <span id="originalPrice">0</span>
+            </p>
+
+            <p>
+                <strong>Discount Amount:</strong>
+                <span id="discountAmount">0</span>
+            </p>
+
+            <p>
+                <strong>Final Price:</strong>
+                <span id="finalPrice">0</span>
+            </p>
+
+        </div>
+
+
+        <div class="note">
+            <strong>How it works:</strong><br>
+            The calculator finds the discount amount from the original
+            price and discount percentage, then subtracts it from the
+            original price to give you the final price.
+        </div>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    <div>
+        <a href="index.html">Home</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Disclaimer</a>
+    </div>
+
+    <p>© 2026 CalcPK. All rights reserved.</p>
+
+</footer>
+
+
+<script>
+
+function calculateDiscount() {
+
+    const price = parseFloat(document.getElementById("price").value);
+    const discount = parseFloat(document.getElementById("discount").value);
+
+    if (isNaN(price) || isNaN(discount)) {
+        alert("Please enter both price and discount percentage.");
+        return;
+    }
+
+    if (price < 0) {
+        alert("Price cannot be negative.");
+        return;
+    }
+
+    if (discount < 0 || discount > 100) {
+        alert("Discount must be between 0% and 100%.");
+        return;
+    }
+
+    const discountAmount = price * discount / 100;
+    const finalPrice = price - discountAmount;
+
+    document.getElementById("originalPrice").textContent =
+        price.toFixed(2);
+
+    document.getElementById("discountAmount").textContent =
+        discountAmount.toFixed(2);
+
+    document.getElementById("finalPrice").textContent =
+        finalPrice.toFixed(2);
+
+    document.getElementById("result").style.display = "block";
+}
+
+</script>
+
+</body>
+</html>

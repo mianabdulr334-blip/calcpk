@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Date Difference Calculator - CalcPK</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 16px 20px;
+        }
+
+        .nav {
+            max-width: 900px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #155eef;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #374151;
+            margin-left: 20px;
+            font-size: 15px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .calculator {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 30px;
+            border: 1px solid #e6e8ec;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .intro {
+            text-align: center;
+            color: #667085;
+            margin-bottom: 30px;
+        }
+
+        .date-box {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #d0d5dd;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #155eef;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #155eef;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .result {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            background: #f0f6ff;
+            border-radius: 12px;
+        }
+
+        .result h2 {
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .result p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .big-result {
+            font-size: 24px;
+            font-weight: bold;
+            color: #155eef;
+            margin-bottom: 15px;
+        }
+
+        .note {
+            margin-top: 25px;
+            padding: 18px;
+            background: #f8fafc;
+            border-radius: 12px;
+            color: #667085;
+            font-size: 14px;
+        }
+
+        footer {
+            background: #172033;
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 50px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 8px;
+            font-size: 14px;
+        }
+
+        footer p {
+            margin-top: 12px;
+            color: #cbd5e1;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            .nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav a {
+                margin-left: 8px;
+                font-size: 13px;
+            }
+
+            .container {
+                margin-top: 30px;
+            }
+
+            .calculator {
+                padding: 22px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="nav">
+        <div class="logo">CalcPK</div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#calculators">Calculators</a>
+        </nav>
+    </div>
+</header>
+
+
+<div class="container">
+
+    <div class="calculator">
+
+        <h1>📅 Date Difference Calculator</h1>
+
+        <p class="intro">
+            Find the exact difference between two dates.
+        </p>
+
+        <div class="date-box">
+            <label for="startDate">Start Date</label>
+            <input type="date" id="startDate">
+        </div>
+
+        <div class="date-box">
+            <label for="endDate">End Date</label>
+            <input type="date" id="endDate">
+        </div>
+
+        <button onclick="calculateDifference()">
+            Calculate Difference
+        </button>
+
+
+        <div class="result" id="result">
+
+            <h2>Result</h2>
+
+            <div class="big-result" id="daysResult">
+                0 days
+            </div>
+
+            <p>
+                <strong>Years:</strong>
+                <span id="years">0</span>
+            </p>
+
+            <p>
+                <strong>Months:</strong>
+                <span id="months">0</span>
+            </p>
+
+            <p>
+                <strong>Total Days:</strong>
+                <span id="totalDays">0</span>
+            </p>
+
+        </div>
+
+
+        <div class="note">
+            <strong>Note:</strong><br>
+            The calculator shows the total number of days between
+            the selected dates and an approximate years/months breakdown.
+        </div>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    <div>
+        <a href="index.html">Home</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Disclaimer</a>
+    </div>
+
+    <p>© 2026 CalcPK. All rights reserved.</p>
+
+</footer>
+
+
+<script>
+
+function calculateDifference() {
+
+    const startInput = document.getElementById("startDate").value;
+    const endInput = document.getElementById("endDate").value;
+
+    if (!startInput || !endInput) {
+        alert("Please select both dates.");
+        return;
+    }
+
+    const startDate = new Date(startInput + "T00:00:00");
+    const endDate = new Date(endInput + "T00:00:00");
+
+    if (endDate < startDate) {
+        alert("End date must be after the start date.");
+        return;
+    }
+
+    const difference =
+        endDate.getTime() - startDate.getTime();
+
+    const totalDays =
+        Math.round(difference / (1000 * 60 * 60 * 24));
+
+    let years = endDate.getFullYear() - startDate.getFullYear();
+
+    let months =
+        endDate.getMonth() - startDate.getMonth();
+
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+
+    if (
+        endDate.getDate() < startDate.getDate() &&
+        months > 0
+    ) {
+        months--;
+    }
+
+    document.getElementById("daysResult").textContent =
+        totalDays + " days";
+
+    document.getElementById("years").textContent =
+        years;
+
+    document.getElementById("months").textContent =
+        months;
+
+    document.getElementById("totalDays").textContent =
+        totalDays;
+
+    document.getElementById("result").style.display =
+        "block";
+}
+
+</script>
+
+</body>
+</html>

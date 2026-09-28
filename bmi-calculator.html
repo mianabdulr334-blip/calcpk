@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BMI Calculator - CalcPK</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        header {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 16px 20px;
+        }
+
+        .nav {
+            max-width: 900px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #155eef;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .home {
+            text-decoration: none;
+            color: #374151;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .box {
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            text-align: center;
+            color: #667085;
+            margin-bottom: 30px;
+        }
+
+        .field {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #d0d5dd;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #155eef;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #104bc4;
+        }
+
+        #result {
+            display: none;
+            margin-top: 25px;
+            padding: 25px;
+            background: #f0f6ff;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .bmi-number {
+            font-size: 38px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .category {
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        .info {
+            margin-top: 25px;
+            padding: 18px;
+            background: #f8fafc;
+            border-radius: 10px;
+        }
+
+        .info p {
+            margin: 7px 0;
+            color: #475467;
+        }
+
+        .note {
+            margin-top: 25px;
+            color: #667085;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 30px auto;
+            }
+
+            .box {
+                padding: 25px 18px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="nav">
+        <div class="logo">CalcPK</div>
+        <a href="index.html" class="home">← Home</a>
+    </div>
+</header>
+
+<div class="container">
+
+    <div class="box">
+
+        <h1>BMI Calculator</h1>
+
+        <p class="description">
+            Calculate your Body Mass Index using your height and weight.
+        </p>
+
+        <div class="field">
+            <label for="weight">Weight (kg)</label>
+            <input
+                type="number"
+                id="weight"
+                placeholder="Example: 70"
+                min="1"
+            >
+        </div>
+
+        <div class="field">
+            <label for="height">Height (cm)</label>
+            <input
+                type="number"
+                id="height"
+                placeholder="Example: 175"
+                min="1"
+            >
+        </div>
+
+        <button onclick="calculateBMI()">
+            Calculate BMI
+        </button>
+
+        <div id="result">
+
+            <p>Your BMI</p>
+
+            <div class="bmi-number" id="bmiValue"></div>
+
+            <div class="category" id="category"></div>
+
+            <div class="info">
+                <p><strong>Underweight:</strong> Below 18.5</p>
+                <p><strong>Normal:</strong> 18.5 – 24.9</p>
+                <p><strong>Overweight:</strong> 25 – 29.9</p>
+                <p><strong>Obesity:</strong> 30 or above</p>
+            </div>
+
+        </div>
+
+        <p class="note">
+            Note: BMI is a screening measure and does not by itself diagnose
+            health conditions. For health advice, consult a qualified healthcare
+            professional.
+        </p>
+
+    </div>
+
+</div>
+
+<script>
+
+function calculateBMI() {
+
+    const weight = Number(document.getElementById("weight").value);
+    const heightCm = Number(document.getElementById("height").value);
+
+    if (weight <= 0 || heightCm <= 0) {
+        alert("Please enter a valid weight and height.");
+        return;
+    }
+
+    const heightM = heightCm / 100;
+
+    const bmi = weight / (heightM * heightM);
+
+    let category = "";
+
+    if (bmi < 18.5) {
+        category = "Underweight";
+    } else if (bmi < 25) {
+        category = "Normal";
+    } else if (bmi < 30) {
+        category = "Overweight";
+    } else {
+        category = "Obesity";
+    }
+
+    document.getElementById("bmiValue").textContent = bmi.toFixed(1);
+    document.getElementById("category").textContent = category;
+
+    document.getElementById("result").style.display = "block";
+}
+
+</script>
+
+</body>
+</html>

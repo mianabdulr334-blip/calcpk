@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Profit & Loss Calculator - CalcPK</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 16px 20px;
+        }
+
+        .nav {
+            max-width: 900px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #155eef;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #374151;
+            margin-left: 20px;
+            font-size: 15px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .calculator {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 30px;
+            border: 1px solid #e6e8ec;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .intro {
+            text-align: center;
+            color: #667085;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #d0d5dd;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #155eef;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #155eef;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .result {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            background: #f0f6ff;
+            border-radius: 12px;
+        }
+
+        .result h2 {
+            margin-bottom: 12px;
+            font-size: 22px;
+        }
+
+        .result p {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+
+        .note {
+            margin-top: 25px;
+            padding: 18px;
+            background: #f8fafc;
+            border-radius: 12px;
+            color: #667085;
+            font-size: 14px;
+        }
+
+        footer {
+            background: #172033;
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 50px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 8px;
+            font-size: 14px;
+        }
+
+        footer p {
+            margin-top: 12px;
+            color: #cbd5e1;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            .nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav a {
+                margin-left: 8px;
+                font-size: 13px;
+            }
+
+            .container {
+                margin-top: 30px;
+            }
+
+            .calculator {
+                padding: 22px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="nav">
+        <div class="logo">CalcPK</div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#calculators">Calculators</a>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+
+    <div class="calculator">
+
+        <h1>📈 Profit & Loss Calculator</h1>
+
+        <p class="intro">
+            Calculate your profit or loss and percentage easily.
+        </p>
+
+        <label for="costPrice">Cost Price</label>
+        <input
+            type="number"
+            id="costPrice"
+            placeholder="Enter cost price"
+            min="0"
+        >
+
+        <label for="sellingPrice">Selling Price</label>
+        <input
+            type="number"
+            id="sellingPrice"
+            placeholder="Enter selling price"
+            min="0"
+        >
+
+        <button onclick="calculateProfitLoss()">
+            Calculate
+        </button>
+
+        <div class="result" id="result">
+
+            <h2 id="resultTitle">Result</h2>
+
+            <p>
+                <strong>Cost Price:</strong>
+                <span id="showCostPrice">0</span>
+            </p>
+
+            <p>
+                <strong>Selling Price:</strong>
+                <span id="showSellingPrice">0</span>
+            </p>
+
+            <p>
+                <strong>Amount:</strong>
+                <span id="amount">0</span>
+            </p>
+
+            <p>
+                <strong>Percentage:</strong>
+                <span id="percentage">0</span>%
+            </p>
+
+        </div>
+
+        <div class="note">
+            <strong>How it works:</strong><br>
+            If the selling price is higher than the cost price,
+            you have a profit. If it is lower, you have a loss.
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+
+    <div>
+        <a href="index.html">Home</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Disclaimer</a>
+    </div>
+
+    <p>© 2026 CalcPK. All rights reserved.</p>
+
+</footer>
+
+<script>
+
+function calculateProfitLoss() {
+
+    const costPrice = parseFloat(
+        document.getElementById("costPrice").value
+    );
+
+    const sellingPrice = parseFloat(
+        document.getElementById("sellingPrice").value
+    );
+
+    if (isNaN(costPrice) || isNaN(sellingPrice)) {
+        alert("Please enter both prices.");
+        return;
+    }
+
+    if (costPrice <= 0 || sellingPrice < 0) {
+        alert("Please enter valid prices.");
+        return;
+    }
+
+    const difference = sellingPrice - costPrice;
+    const percentage = Math.abs(difference / costPrice) * 100;
+
+    document.getElementById("showCostPrice").textContent =
+        costPrice.toFixed(2);
+
+    document.getElementById("showSellingPrice").textContent =
+        sellingPrice.toFixed(2);
+
+    document.getElementById("amount").textContent =
+        Math.abs(difference).toFixed(2);
+
+    document.getElementById("percentage").textContent =
+        percentage.toFixed(2);
+
+    if (difference > 0) {
+        document.getElementById("resultTitle").textContent =
+            "🎉 Profit";
+
+    } else if (difference < 0) {
+        document.getElementById("resultTitle").textContent =
+            "📉 Loss";
+
+    } else {
+        document.getElementById("resultTitle").textContent =
+            "⚖️ No Profit, No Loss";
+    }
+
+    document.getElementById("result").style.display = "block";
+}
+
+</script>
+
+</body>
+</html>

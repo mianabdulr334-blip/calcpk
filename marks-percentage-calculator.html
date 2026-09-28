@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Marks Percentage Calculator - CalcPK</title>
+
+  <meta name="description" content="Calculate marks percentage easily with CalcPK Marks Percentage Calculator.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f7fb;
+      color: #172033;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #0b1f3a;
+      padding: 18px 20px;
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: white;
+      font-size: 25px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .home {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 0 18px;
+    }
+
+    .card {
+      background: white;
+      padding: 28px;
+      border-radius: 16px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+    }
+
+    h1 {
+      text-align: center;
+      color: #0b1f3a;
+      margin-bottom: 8px;
+    }
+
+    .intro {
+      text-align: center;
+      color: #667085;
+      margin-bottom: 25px;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 7px;
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d0d5dd;
+      border-radius: 9px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #2563eb;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    .result {
+      margin-top: 25px;
+      padding: 22px;
+      background: #eef4ff;
+      border-radius: 12px;
+      text-align: center;
+      display: none;
+    }
+
+    .result h2 {
+      color: #0b1f3a;
+      margin-bottom: 12px;
+    }
+
+    .percentage {
+      font-size: 36px;
+      font-weight: bold;
+      color: #2563eb;
+      margin-bottom: 8px;
+    }
+
+    .status {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .details {
+      margin-top: 18px;
+      padding-top: 15px;
+      border-top: 1px solid #dbe3f0;
+    }
+
+    .details p {
+      margin: 5px 0;
+    }
+
+    .info {
+      margin-top: 25px;
+      background: white;
+      padding: 22px;
+      border-radius: 14px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .info h2 {
+      color: #0b1f3a;
+      margin-bottom: 10px;
+      font-size: 19px;
+    }
+
+    .info p {
+      color: #667085;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #667085;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 20px;
+      }
+
+      .percentage {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="logo">CalcPK</a>
+    <a href="index.html" class="home">Home</a>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="card">
+
+    <h1>Marks Percentage Calculator</h1>
+
+    <p class="intro">
+      Calculate your exam marks percentage quickly and easily.
+    </p>
+
+    <div class="field">
+      <label>Obtained Marks</label>
+
+      <input
+        type="number"
+        id="obtainedMarks"
+        min="0"
+        placeholder="e.g. 750"
+      >
+    </div>
+
+    <div class="field">
+      <label>Total Marks</label>
+
+      <input
+        type="number"
+        id="totalMarks"
+        min="1"
+        placeholder="e.g. 1100"
+      >
+    </div>
+
+    <button onclick="calculatePercentage()">
+      Calculate Percentage
+    </button>
+
+    <div class="result" id="result">
+
+      <h2>Your Result</h2>
+
+      <div class="percentage" id="percentage">
+        0%
+      </div>
+
+      <div class="status" id="status">
+        —
+      </div>
+
+      <div class="details">
+
+        <p>
+          Obtained Marks:
+          <strong id="showObtained">0</strong>
+        </p>
+
+        <p>
+          Total Marks:
+          <strong id="showTotal">0</strong>
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="info">
+
+    <h2>How to Calculate Percentage?</h2>
+
+    <p>
+      Percentage = (Obtained Marks ÷ Total Marks) × 100
+    </p>
+
+    <br>
+
+    <p>
+      Example: If you obtain 750 marks out of 1100,
+      your percentage is approximately 68.18%.
+    </p>
+
+  </div>
+
+</div>
+
+<footer>
+  © 2026 CalcPK — Simple Tools. Smart Calculations.
+</footer>
+
+<script>
+
+function calculatePercentage() {
+
+  const obtained =
+    Number(document.getElementById("obtainedMarks").value);
+
+  const total =
+    Number(document.getElementById("totalMarks").value);
+
+  if (obtained < 0 || total <= 0) {
+
+    alert("Please enter valid marks.");
+
+    return;
+  }
+
+  if (obtained > total) {
+
+    alert("Obtained marks cannot be greater than total marks.");
+
+    return;
+  }
+
+  const percentage =
+    (obtained / total) * 100;
+
+  document.getElementById("percentage").textContent =
+    percentage.toFixed(2) + "%";
+
+  document.getElementById("showObtained").textContent =
+    obtained;
+
+  document.getElementById("showTotal").textContent =
+    total;
+
+  let status = "";
+
+  if (percentage >= 80) {
+    status = "Excellent";
+  } else if (percentage >= 70) {
+    status = "Very Good";
+  } else if (percentage >= 60) {
+    status = "Good";
+  } else if (percentage >= 50) {
+    status = "Pass";
+  } else {
+    status = "Below 50%";
+  }
+
+  document.getElementById("status").textContent =
+    status;
+
+  document.getElementById("result").style.display =
+    "block";
+}
+
+</script>
+
+</body>
+</html>
